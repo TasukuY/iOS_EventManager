@@ -8,53 +8,53 @@
 import UIKit
 
 class EventListTableViewController: UITableViewController {
-
-    //MARK: - IBOutlets
-    
-    
-    
-    
-    
     
     //MARK: - Properties
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        EventController.shared.fetchEvents()
     }
-
-    //MARK: - IBActions
     
-    
-    
-    
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EventController.shared.events.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Strings.cellIdentifier, for: indexPath) as? EventTableViewCell
+        else { return UITableViewCell() }
+        
+        let eventToDisplay = EventController.shared.events[indexPath.row]
+        cell.updateViews(with: eventToDisplay)
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let eventToDelete = EventController.shared.events[indexPath.row]
+            EventController.shared.delete(eventToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //IIDOO
+        if segue.identifier == Strings.toDetailsView {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                  let destination = segue.destination as? EventDetailsViewController
+            else { return }
+            let eventToSend = EventController.shared.events[indexPath.row]
+            destination.event = eventToSend
+        }
     }
 
 }//End of class

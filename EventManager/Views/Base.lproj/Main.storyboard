@@ -12,13 +12,13 @@
         <!--Events-->
         <scene sceneID="m55-GY-rZZ">
             <objects>
-                <tableViewController id="Lkj-76-XeP" sceneMemberID="viewController">
+                <tableViewController id="Lkj-76-XeP" customClass="EventListTableViewController" customModule="EventManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="96c-jb-tmQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="0ov-IE-eYm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="72" id="0ov-IE-eYm" customClass="EventTableViewCell" customModule="EventManager" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ov-IE-eYm" id="LrP-Xe-wXp">
@@ -26,13 +26,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4LL-gx-iqC">
-                                            <rect key="frame" x="20.5" y="8.5" width="373" height="55.5"/>
+                                            <rect key="frame" x="20.5" y="10" width="373" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="spe-NP-tDq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="307.5" height="55.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="311" height="52"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hee-6S-QRa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="307.5" height="29"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hee-6S-QRa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="311" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="29" id="n7c-Zh-77Y"/>
                                                             </constraints>
@@ -41,7 +41,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgx-LH-8yy">
-                                                            <rect key="frame" x="0.0" y="34" width="307.5" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="34" width="311" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQQ-Ge-cTK">
-                                                    <rect key="frame" x="317.5" y="0.0" width="55.5" height="55.5"/>
+                                                    <rect key="frame" x="321" y="0.0" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="BQQ-Ge-cTK" secondAttribute="height" multiplier="1:1" id="T5o-h5-87q"/>
                                                     </constraints>
@@ -63,16 +63,27 @@
                                                             </hierarchicalColors>
                                                         </imageReference>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="attendanceButtonTapped:" destination="0ov-IE-eYm" eventType="touchUpInside" id="TxM-Jt-yk2"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="4LL-gx-iqC" firstAttribute="centerX" secondItem="LrP-Xe-wXp" secondAttribute="centerX" id="5ry-UW-e5e"/>
+                                        <constraint firstAttribute="bottom" secondItem="4LL-gx-iqC" secondAttribute="bottom" constant="10" id="Oin-xY-XWU"/>
                                         <constraint firstItem="4LL-gx-iqC" firstAttribute="width" secondItem="LrP-Xe-wXp" secondAttribute="width" multiplier="0.9" id="UUr-8P-z7h"/>
+                                        <constraint firstItem="4LL-gx-iqC" firstAttribute="top" secondItem="LrP-Xe-wXp" secondAttribute="top" constant="10" id="Y8w-dy-JkN"/>
                                         <constraint firstItem="4LL-gx-iqC" firstAttribute="centerY" secondItem="LrP-Xe-wXp" secondAttribute="centerY" id="y1v-pa-XUj"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="attendanceButton" destination="BQQ-Ge-cTK" id="owN-vN-5N9"/>
+                                    <outlet property="eventDatesLabel" destination="Kgx-LH-8yy" id="EOI-gf-uOS"/>
+                                    <outlet property="eventTitleLabel" destination="Hee-6S-QRa" id="T6s-Ic-sff"/>
+                                    <segue destination="nLg-KM-96T" kind="show" identifier="toDetailsView" id="Vv6-sy-czb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -90,7 +101,7 @@
                                 </hierarchicalColors>
                             </imageReference>
                             <connections>
-                                <segue destination="nLg-KM-96T" kind="show" id="6Yi-2j-s30"/>
+                                <segue destination="nLg-KM-96T" kind="show" identifier="toCreateNewEvent" id="6Yi-2j-s30"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -99,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="237.68115942028987" y="87.723214285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Details View Controller-->
         <scene sceneID="e9b-P6-233">
             <objects>
-                <viewController id="nLg-KM-96T" sceneMemberID="viewController">
+                <viewController id="nLg-KM-96T" customClass="EventDetailsViewController" customModule="EventManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pkO-48-bdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,8 +157,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jxw-si-rk5">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fer-Ln-uDA"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fer-Ln-uDA">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="nLg-KM-96T" id="WID-6C-gET"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="eventDatePicker" destination="IUR-jj-Y4Y" id="56C-L3-87e"/>
+                        <outlet property="eventTitleTextField" destination="bfX-MI-Fc4" id="X3q-He-GkL"/>
+                        <outlet property="viewTitleLabel" destination="xWG-Eo-kMG" id="1rr-wg-Rfv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k92-Wf-hq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,6 +190,9 @@
             <point key="canvasLocation" x="-651" y="88"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6Yi-2j-s30"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="clock.badge.checkmark.fill" catalog="system" width="128" height="113"/>

@@ -10,6 +10,11 @@ import Foundation
 enum Strings {
     
     //Custom Cell VC
-    static let attendImage = "clock.badge.checkmark.fill"
     static let absentImage = "clock"
+    static let attendImage = "clock.badge.checkmark.fill"
+    static let cellIdentifier = "eventCell"
+    
+    //Segue Identifiers
+    static let toCreateNewEvent = "toCreateNewEvent"
+    static let toDetailsView = "toDetailsView"
 }
