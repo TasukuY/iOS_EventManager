@@ -30,7 +30,8 @@ class EventListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Strings.cellIdentifier, for: indexPath) as? EventTableViewCell
         else { return UITableViewCell() }
-        
+        cell.indexPath = indexPath
+        cell.delegate = self
         let eventToDisplay = EventController.shared.events[indexPath.row]
         cell.updateViews(with: eventToDisplay)
 
@@ -58,3 +59,13 @@ class EventListTableViewController: UITableViewController {
     }
 
 }//End of class
+
+extension EventListTableViewController: EventCellDelegate{
+    func attendanceButtonTapped(sender: EventTableViewCell) {
+        guard let indexPath = sender.indexPath else { return }
+        let event = EventController.shared.events[indexPath.row]
+        EventController.shared.toggleAttendanceState(of: event)
+        sender.updateViews(with: event)
+    }
+    
+}//End of extension

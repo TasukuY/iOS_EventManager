@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol EventCellDelegate: AnyObject {
+    func attendanceButtonTapped(sender: EventTableViewCell)
+}
+
 class EventTableViewCell: UITableViewCell {
 
     //MARK: - IBOutlets
@@ -14,9 +18,13 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventDatesLabel: UILabel!
     @IBOutlet weak var attendanceButton: UIButton!
     
+    //MARK: - Properties
+    weak var delegate: EventCellDelegate?
+    var indexPath: IndexPath?
     
     //MARK: - IBActions
     @IBAction func attendanceButtonTapped(_ sender: UIButton) {
+        delegate?.attendanceButtonTapped(sender: self)
     }
     
     //MARK: - Methods
