@@ -21,6 +21,9 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+        eventTitleTextField.delegate = self
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     //MARK: - IBActions
@@ -55,3 +58,13 @@ class EventDetailsViewController: UIViewController {
     }
     
 }//End of class
+
+extension EventDetailsViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        return true
+    }
+    
+}//End of extension

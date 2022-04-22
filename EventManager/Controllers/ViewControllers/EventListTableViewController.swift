@@ -23,8 +23,12 @@ class EventListTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return EventController.shared.sections.count
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return EventController.shared.events.count
+        return EventController.shared.sections[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,7 +36,7 @@ class EventListTableViewController: UITableViewController {
         else { return UITableViewCell() }
         cell.indexPath = indexPath
         cell.delegate = self
-        let eventToDisplay = EventController.shared.events[indexPath.row]
+        let eventToDisplay = EventController.shared.sections[indexPath.section][indexPath.row]
         cell.updateViews(with: eventToDisplay)
 
         return cell
@@ -40,9 +44,19 @@ class EventListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let eventToDelete = EventController.shared.events[indexPath.row]
+            let eventToDelete = EventController.shared.sections[indexPath.section][indexPath.row]
             EventController.shared.delete(eventToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Attending Events"
+        }else if section == 1 {
+            return "Canceled Events"
+        }else {
+            return nil
         }
     }
     
@@ -53,7 +67,7 @@ class EventListTableViewController: UITableViewController {
             guard let indexPath = tableView.indexPathForSelectedRow,
                   let destination = segue.destination as? EventDetailsViewController
             else { return }
-            let eventToSend = EventController.shared.events[indexPath.row]
+            let eventToSend = EventController.shared.sections[indexPath.section][indexPath.row]
             destination.event = eventToSend
         }
     }
@@ -63,9 +77,10 @@ class EventListTableViewController: UITableViewController {
 extension EventListTableViewController: EventCellDelegate{
     func attendanceButtonTapped(sender: EventTableViewCell) {
         guard let indexPath = sender.indexPath else { return }
-        let event = EventController.shared.events[indexPath.row]
+        let event = EventController.shared.sections[indexPath.section][indexPath.row]
         EventController.shared.toggleAttendanceState(of: event)
         sender.updateViews(with: event)
+        tableView.reloadData()
     }
     
 }//End of extension

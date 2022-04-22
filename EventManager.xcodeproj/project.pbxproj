@@ -21,6 +21,7 @@
 		C923F16A281326CA00367555 /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923F169281326CA00367555 /* EventListTableViewController.swift */; };
 		C923F16C281326E300367555 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923F16B281326E300367555 /* EventDetailsViewController.swift */; };
 		C923F16E281326FF00367555 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923F16D281326FF00367555 /* EventTableViewCell.swift */; };
+		C923F17028133F8E00367555 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923F16F28133F8E00367555 /* NotificationScheduler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C923F169281326CA00367555 /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 		C923F16B281326E300367555 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		C923F16D281326FF00367555 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		C923F16F28133F8E00367555 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		C923F15E281319FF00367555 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				C923F16F28133F8E00367555 /* NotificationScheduler.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				C923F16E281326FF00367555 /* EventTableViewCell.swift in Sources */,
 				C923F16428131DA800367555 /* Event+Convenience.swift in Sources */,
 				C923F16228131D6000367555 /* CoreDataStack.swift in Sources */,
+				C923F17028133F8E00367555 /* NotificationScheduler.swift in Sources */,
 				C923F16A281326CA00367555 /* EventListTableViewController.swift in Sources */,
 				C923F13F281312AE00367555 /* AppDelegate.swift in Sources */,
 				C923F149281312AE00367555 /* EventManager.xcdatamodeld in Sources */,
